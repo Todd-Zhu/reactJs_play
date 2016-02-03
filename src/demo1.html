@@ -6,13 +6,70 @@
 	<script src="http://cdn.bootcss.com/react/0.14.6/react.min.js"></script>
 	<script src="http://cdn.bootcss.com/react/0.14.6/react-dom.min.js"></script>
 	<script src="js/lib/browser.min.js"></script>
+	<style type="text/css">
+		.cor-blue{
+			color: blue;
+		}
+		.cor-red{
+			color: red;
+		}
+	</style>
 </head>
 <body>
 	<div id="example"></div>
 	<script type="text/babel">
+		var names = ['zhu','liang','fu'];
+		var arr = [
+		  <h2>Hello world!</h2>,
+		  <h2>React is awesome</h2>,
+		];
+		
+		var Demo1 = React.createClass({
+			render: function(){
+				return <div><h1>Hello, world!</h1></div>;
+			}
+		});
+
+		var Demo2 = React.createClass({
+			render: function(){
+				return <div>{
+					names.map(function(name){
+						return <h1>Helle,{name}</h1>
+					})
+				}</div>;
+			}
+		});
+
+		var Demo3 = React.createClass({
+			render: function(){
+				return <div>{arr}</div>
+			}
+		});
+
+		var Demo4 = React.createClass({
+			render: function(){
+				return <div className="cor-blue">
+					<h1>
+						{this.props.id},
+						{this.props.name},
+						{this.props.className}
+					</h1>
+				</div>
+			}
+		});
+
 		ReactDOM.render(
-		  <h1>Hello, world!</h1>,
-		  document.getElementById('example')
+			<div>
+				<Demo1 />
+				<hr/>
+				<Demo2 name="testName" />
+				<hr/>
+				<Demo3 />
+				<hr/>
+				<Demo4 name="testName" id="testId" className="cor-blue" />
+				
+			</div>,
+			document.getElementById('example')
 		);
 	</script>
 </body>
